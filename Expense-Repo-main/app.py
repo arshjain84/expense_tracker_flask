@@ -60,7 +60,8 @@ income=0
 expense=0
 @app.route('/home',methods=['GET','POST'])
 def home():
-    task = "a"
+    new_taskk_inc = []
+    new_taskk_exp = []
     if request.method=='POST':
         transaction_name = request.form['transactions']
         amount = request.form['enter_amount']
@@ -78,22 +79,27 @@ def home():
 
         total = income + expense
 
-        new_task = {
+        new_task = tasks.insert_one({
             'name':transaction_name,
             'amount':amount,
             'income':income,
             'expense':expense,
             'total':total
-            }
-        transaction_history = {
-            'name': transaction_name,
-            'amount': amount
-        }
-        print(new_task)
-
-        # inc = tasks.aggregate([{$match:{}}, {$group:{_id:0,income:{$sum:"$income"}}}])
+        })
+        income = int(income)
+        expense = int(expense)
+        inc_data=list(tasks.find({},{"income":1,"_id":0}))
+        for i in inc_data:
+            new_taskk_inc.append(i)
         
-    return render_template('index.html',history = transaction_history, total = new_task['total'], inc = new_task['income'], exp = new_task['expense'])
+        # print(new_taskk_inc)
+        exp_data = list(tasks.find({},{"expense":1,"_id":0}))
+        for i in exp_data:
+            new_taskk_exp.append(i)
+        
+        # print(new_taskk_exp)
+        flash("transaction added successfully")
+    return render_template('index.html',new_task_inc = new_taskk_inc, new_task_exp = new_taskk_exp)
 
 if __name__ == "__main__":
     app.run(debug = True)

@@ -10,28 +10,31 @@
 </head>
 
 <body>
-  
+
   <h2> Expense Tracker</h2>
-  {% block content %}
   <div class="container">
     <h4>Your Balance</h4>
-    <h1 name="balance" id="balance">{{total}}</h1>
+    <h1 name="balance" id="balance">{{tot}}</h1>
 
     <div class="inc-exp-container">
       <div>
         <h4>Income</h4>
-        <p id="money-plus" name="money-plus" class="money plus">{{inc}}</p>
+        <p id="money-plus" name="money-plus" class="money plus">
+          {{new_task_inc[-1]['income']}}
+        </p>
       </div>
       <div>
         <h4>Expense</h4>
-        <p id="money-minus" name="money-minus" class="money minus">{{exp}}</p>
+        <p id="money-minus" name="money-minus" class="money minus">
+          {{new_task_exp[-1]['expense']}}
+        </p>
       </div>
     </div>
 
     <div class="histroy">
       <h3> Transaction History</h3>
       <ul id="list" name="list" class="list">
-        <li>{{i}}</li>
+        <li></li>
       </ul>
     </div>
 
@@ -49,10 +52,18 @@
       </div>
       <button class="btn">Add transaction</button>
     </form>
+    {% block content %}
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
     {% endblock %}
   </div>
 
-  <script src="{{url_for('static',filename='js/script.js')}}"></script>
+  <script src="{{url_for('static',filename='js/signup_script.js')}}"></script>
 </body>
 
 </html>
