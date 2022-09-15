@@ -62,6 +62,7 @@ expense=0
 def home():
     new_taskk_inc = []
     new_taskk_exp = []
+    new_taskk_bal = []
     if request.method=='POST':
         transaction_name = request.form['transactions']
         amount = request.form['enter_amount']
@@ -88,6 +89,7 @@ def home():
         })
         income = int(income)
         expense = int(expense)
+        total = int(total)
         inc_data=list(tasks.find({},{"income":1,"_id":0}))
         for i in inc_data:
             new_taskk_inc.append(i)
@@ -99,7 +101,12 @@ def home():
         
         # print(new_taskk_exp)
         flash("transaction added successfully")
-    return render_template('index.html',new_task_inc = new_taskk_inc, new_task_exp = new_taskk_exp)
+
+        #calculating balance
+        total_bal = list(tasks.find({},{"total":1,"_id":0}))
+        for i in total_bal:
+            new_taskk_bal.append(i)
+    return render_template('index.html',new_task_inc = new_taskk_inc, new_task_exp = new_taskk_exp, new_task_bal = new_taskk_bal)
 
 if __name__ == "__main__":
     app.run(debug = True)

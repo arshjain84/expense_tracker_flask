@@ -14,19 +14,19 @@
   <h2> Expense Tracker</h2>
   <div class="container">
     <h4>Your Balance</h4>
-    <h1 name="balance" id="balance">{{tot}}</h1>
+    <h1 name="balance" id="balance">&#8377 {{new_task_bal[-1]['total']}}</h1>
 
     <div class="inc-exp-container">
       <div>
         <h4>Income</h4>
         <p id="money-plus" name="money-plus" class="money plus">
-          {{new_task_inc[-1]['income']}}
+          &#8377 {{new_task_inc[-1]['income']}}
         </p>
       </div>
       <div>
         <h4>Expense</h4>
         <p id="money-minus" name="money-minus" class="money minus">
-          {{new_task_exp[-1]['expense']}}
+          &#8377{{new_task_exp[-1]['expense']}}
         </p>
       </div>
     </div>
