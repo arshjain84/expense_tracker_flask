@@ -9,10 +9,12 @@
   <title>Expense Tracker</title>
 </head>
 <style>
-
+  
 body{
   background-color: beige;
+  background-image: linear-gradient(to right, rgb(89, 89, 189),rgb(125, 12, 12));
 }
+
  table {
 
 font-family: arial, sans-serif;
@@ -22,9 +24,6 @@ border-collapse: collapse;
 width: 100%;
 
 }
-
-
-
 td, th {
 
 border: 3px solid #dddddd;
@@ -53,10 +52,11 @@ background-color: white;
 
 }
 </style>
+</style>
 <body>
   {% block content %}
-  <h2> Expense Tracker</h2>
-  <div class="container">
+  <h2 style="color:white"> Expense Tracker</h2>
+  <div class="containerh">
     <h4>Your Balance</h4>
     <h1 name="balance" id="balance">
       &#8377 {{new_task_bal[-1]['total']}}
@@ -72,18 +72,19 @@ background-color: white;
       <div>
         <h4>Expense</h4>
         <p id="money-minus" name="money-minus" class="money minus">
-          &#8377{{new_task_exp[-1]['expense']}}
+          &#8377 {{new_task_exp[-1]['expense']}}
         </p>
       </div>
     </div>
 
     <div class="histroy">
-      <h3>Transaction History</h3>
+      <h3 style="color:white">Transaction History</h3>
       <table>
-        <table class="center">
+        <table border="1" class="center">
           <tr>
             <th> Name </th>
             <th> Amount </th>
+            <th></th>
           </tr>
           <br>
           {% for re in new_task_history %}
@@ -128,7 +129,6 @@ background-color: white;
     function func(){
       var v1 = document.getElementById('transMsg') ;
       v1.innerHTML = "Txn added successfully";
-
       setTimeout(() => {
         v1.innerHTML = "";
       },2000 );

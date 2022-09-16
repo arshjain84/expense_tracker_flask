@@ -110,11 +110,11 @@ def home():
         #APPLICATION HISTORY
         total_history = list(tasks.find({},{"name":1,"amount":1,"_id":0}))
         for i in total_history:
-            new_taskk_history.append(i)
-
-
-            
+            new_taskk_history.append(i)       
     return render_template('index.html',new_task_inc = new_taskk_inc, new_task_exp = new_taskk_exp, new_task_bal = new_taskk_bal,new_task_history = new_taskk_history)
+@app.route('/email')
+def email():
+    return render_template('email.html')
 
 if __name__ == "__main__":
     app.run(debug = True)

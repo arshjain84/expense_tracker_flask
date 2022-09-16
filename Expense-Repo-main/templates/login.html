@@ -1,5 +1,6 @@
-<html>
-<head>
+{%extends 'base.html'%}
+{% block content %}
+
   <title> Login Page </title>
   <link rel="stylesheet" href="{{url_for('static',filename='css/login_style.css')}}">
 </head>
@@ -13,7 +14,7 @@
 </style>
 <body>
   <div class="Login-form">
-    <img src="{{url_for('static',filename='images/msmlogo.jpeg')}}" alt="MSM_logo" width="120" height="120">
+    <img src="{{url_for('static',filename='images/expense.jpg')}}" alt="MSM_logo" width="120" height="120">
     <h1> Login Now </h1>
     <form name="login form" action="/home" method="post">
       <input type="User_name" name="User_name" class="input-box" placeholder="Username">
@@ -25,4 +26,4 @@
     </form>
   </div>
 </body>
-</html>
+{% endblock %}
