@@ -8,13 +8,29 @@
   <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}" />
   <title>Expense Tracker</title>
 </head>
-
+<style>
+  th, td {
+  padding: 15px;
+  text-align: left;
+  font-size: large;
+  
+}
+body{
+  background-color: beige;
+}
+table, th, td {
+  border: 3px solid;
+}
+tr:hover {background-color: coral;}
+</style>
 <body>
-
+  {% block content %}
   <h2> Expense Tracker</h2>
   <div class="container">
     <h4>Your Balance</h4>
-    <h1 name="balance" id="balance">&#8377 {{new_task_bal[-1]['total']}}</h1>
+    <h1 name="balance" id="balance">
+      &#8377 {{new_task_bal[-1]['total']}}
+    </h1>
 
     <div class="inc-exp-container">
       <div>
@@ -32,15 +48,29 @@
     </div>
 
     <div class="histroy">
-      <h3> Transaction History</h3>
-      <ul id="list" name="list" class="list">
-        <li></li>
-      </ul>
+      <h3>Transaction History</h3>
+      <table>
+        <table border="1" class="center">
+          <tr>
+            <th> Name </th>
+            <th> Amount </th>
+          </tr>
+          <br>
+          {% for re in new_task_history %}
+          <tr>
+            <td>{{re['name']}}</td>
+            <td>{{re['amount']}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <ul id="list" name="list" class="list">
+        </ul>
     </div>
 
 
     <h3>Add new transaction</h3>
-    <form id="form" action="/home" name="form" method="post">
+    <form id="form" name="form" method="post">
       <div class="form-control">
         <label for="text">Text(max 20 letter)</label>
         <input type="text" name="transactions" id="text" placeholder="Enter text..." />
@@ -50,20 +80,30 @@
           (negative - expense, positive - income)</label>
         <input type="number" name="enter_amount" id="amount" placeholder="Enter amount..." />
       </div>
-      <button class="btn">Add transaction</button>
+      <button type="submit" class="btn">Add transaction</button>
+      <!-- <div id="transMsg"></div> -->
     </form>
-    {% block content %}
-    {% with messages = get_flashed_messages() %}
+    <!-- {% with messages = get_flashed_messages() %}
     {% if messages %}
     {% for message in messages %}
     {{ message }}
     {% endfor %}
     {% endif %}
     {% endwith %}
-    {% endblock %}
+    {% endblock %} -->
   </div>
 
   <script src="{{url_for('static',filename='js/signup_script.js')}}"></script>
+  <!-- <script>
+    function func(){
+      var v1 = document.getElementById('transMsg') ;
+      v1.innerHTML = "Txn added successfully";
+
+      setTimeout(() => {
+        v1.innerHTML = "";
+      },2000 );
+    } -->
+  <!-- </script> -->
 </body>
 
 </html>
