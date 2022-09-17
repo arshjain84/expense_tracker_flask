@@ -4,11 +4,11 @@ from binascii import Incomplete
 from glob import glob
 import re
 from unicodedata import name
-from unittest import result
+from unittest import removeResult, result
 from flask import Flask,render_template,request,Response,json, flash, redirect, url_for,session
 from flask_pymongo import PyMongo
 from flask_bcrypt import Bcrypt
-
+import uuid
 app = Flask(__name__)
 app.config['MONGO_URI'] = "mongodb://localhost:27017/expense_tracker_db"
 mongo = PyMongo(app)
@@ -60,6 +60,7 @@ income=0
 expense=0
 @app.route('/home',methods=['GET','POST'])
 def home():
+    # return render_template('index.html')
     new_taskk_inc = []
     new_taskk_exp = []
     new_taskk_bal = []
@@ -80,6 +81,7 @@ def home():
         total = income + expense
 
         new_task = tasks.insert_one({
+            # '_id': uuid.uuid4(),
             'name':transaction_name,
             'amount':amount,
             'income':income,
@@ -110,11 +112,50 @@ def home():
         #APPLICATION HISTORY
         total_history = list(tasks.find({},{"name":1,"amount":1,"_id":0}))
         for i in total_history:
-            new_taskk_history.append(i)       
-    return render_template('index.html',new_task_inc = new_taskk_inc, new_task_exp = new_taskk_exp, new_task_bal = new_taskk_bal,new_task_history = new_taskk_history)
+            new_taskk_history.append(i)  
+    return render_template('index.html',new_task_inc = new_taskk_inc, new_task_exp = new_taskk_exp, new_task_bal = new_taskk_bal)
+
+
 @app.route('/email')
 def email():
     return render_template('email.html')
 
+@app.route('/history',methods = ['GET','POST'])
+def history():
+    new_taskk_history = []
+
+        # flash("transaction added successfully")
+        #APPLICATION HISTORY
+    total_history = list(tasks.find({},{"name":1,"amount":1,"_id":1}))
+    for i in total_history:
+        new_taskk_history.append(i)       
+    return render_template('transaction_history.html',new_task_history = new_taskk_history)
+
+# @app.route("/edit/<id>", methods=["GET","POST"])
+# def update(id):
+#     if request.method=='GET':
+#         history_update=[]
+#         history_data=tasks.find({'_id':id})
+#         for i in history_data:
+#             history_update.append(i)
+#             print(history_update)
+            
+#     if request.method=="POST":
+#         N = request.form.get("name")
+#         i = request.form.get("employee_id")
+#         p = request.form.get("phone")
+#         jd = request.form.get("job")
+#         d = request.form.get("dateemployed")
+#         ad = request.form.get("resaddress")
+#         jl = request.form.get("reslocation")
+
+
+#         tasks.update_one({"Employee_id": i},{"$set":{'Employee_name':N,'Employee_id':i,'Phone_Number':p,'Designation':jd,'Date_of_Joining':d,'Address':ad,'Location':jl}})
+#         return redirect(url_for('employeelist'))
+#     return render_template ("edit.html",newuser=history_update)
+
+@app.route('/edit')
+def edit():
+    return render_template('edit.html')
 if __name__ == "__main__":
     app.run(debug = True)

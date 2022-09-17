@@ -1,0 +1,21 @@
+
+{% block body %}
+<html>
+<body>
+
+<h2>Edit your Transaction and Transaction amount here</h2>
+{% for i in newuser%}
+<form method="post" name ="form">
+  <label for="name">Transaction Name</label><br>
+  <input type="text" id="name_edit" name="name_edit" value = "{{history_update["name"] }}">
+  <br>
+  <label for="Amount">Amount</label><br>
+  <input type="text" id="amount_edit" name="amount_edit" value = "{{history_update["amount"] }}"><br><br>
+  <input type="submit" value="Submit">
+</form> 
+{% endfor %}
+
+<p>If you click the "Submit" button, the form-data will be sent to a page called</p>
+
+</body>
+{% endblock %}

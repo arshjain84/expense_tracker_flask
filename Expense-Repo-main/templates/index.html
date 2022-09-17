@@ -55,7 +55,7 @@ background-color: white;
 </style>
 <body>
   {% block content %}
-  <h2 style="color:white"> Expense Tracker</h2>
+  <h2 style="color:white"> Income & Expense Tracker</h2>
   <div class="containerh">
     <h4>Your Balance</h4>
     <h1 name="balance" id="balance">
@@ -76,32 +76,8 @@ background-color: white;
         </p>
       </div>
     </div>
-
-    <div class="histroy">
-      <h3 style="color:white">Transaction History</h3>
-      <table>
-        <table border="1" class="center">
-          <tr>
-            <th> Name </th>
-            <th> Amount </th>
-            <th></th>
-          </tr>
-          <br>
-          {% for re in new_task_history %}
-          <tr>
-            <td>{{re['name']}}</td>
-            <td>{{re['amount']}}</td>
-            </tr>
-            {% endfor %}
-        </table>
-
-        <ul id="list" name="list" class="list">
-        </ul>
-    </div>
-
-
     <h3>Add new transaction</h3>
-    <form id="form" name="form" method="post">
+    <form id="form" name="form" method="post" onsubmit="clearFields()">
       <div class="form-control">
         <label for="text">Text(max 20 letter)</label>
         <input type="text" name="transactions" id="text" placeholder="Enter text..." />
@@ -112,6 +88,7 @@ background-color: white;
         <input type="number" name="enter_amount" id="amount" placeholder="Enter amount..." />
       </div>
       <button type="submit" class="btn">Add transaction</button>
+      <button onclick="location.href='http://127.0.0.1:5000/history'" type="button" class ="btn">View Transactions</button>
       <!-- <div id="transMsg"></div> -->
     </form>
     <!-- {% with messages = get_flashed_messages() %}
@@ -124,16 +101,8 @@ background-color: white;
     {% endblock %} -->
   </div>
 
-  <script src="{{url_for('static',filename='js/signup_script.js')}}"></script>
-  <!-- <script>
-    function func(){
-      var v1 = document.getElementById('transMsg') ;
-      v1.innerHTML = "Txn added successfully";
-      setTimeout(() => {
-        v1.innerHTML = "";
-      },2000 );
-    } -->
-  <!-- </script> -->
+  <script src="{{url_for('static',filename='js/signup_script.js')}}">
+  </script>
 </body>
 
 </html>
