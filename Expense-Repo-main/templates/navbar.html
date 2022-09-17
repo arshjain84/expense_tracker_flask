@@ -1,21 +1,74 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navbar</title>
+</head>
+
+<style>
+  body {
+    margin: 0;
+  }
+
+  nav {
+    background-color: rgb(255, 255, 255);
+    box-shadow: 1px 1px 10px rgb(77, 73, 73);
+    display: flex;
+    position: sticky;
+    top: 0;
+  }
+
+  .left {
+    display: flex;
+    flex: 4;
+  }
+
+  .center{
+    flex:2;
+  }
+
+  .right {
+    display: flex;
+    flex: 1;
+  }
+
+
+
+  p {
+    margin-left: 1.5rem;
+    cursor: pointer;
+  }
+
+  .btn {
+    padding: 0.2rem;
+  }
+
+  a {
+    text-decoration: none;
+    color: #1c8adb;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+  img {
+    width: 7%;
+  }
+</style>
+
+<body>
+  <nav>
+    <div class="left">
+      <img src="static/images/corestack_logo.webp" width="10%" alt="">
+      <p> <a href="/home">Budget Tracker</a> </p>
+      <p> <a href="/">About</a> </p>
+    </div>
+    <div class="center"></div>
+    <div class="right">
+      <!-- <p><a href="/login">Login</a></p> -->
+      <p><a href="#">Contact Us</a></p>
     </div>
   </nav>
+</body>
+
+</html>

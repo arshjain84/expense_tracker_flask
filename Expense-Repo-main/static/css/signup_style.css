@@ -1,68 +1,94 @@
-body
-{
-    margin : 0;
-    padding : 0;
-    font-family : sans-serif;
-    background-image : url("static/images/bgimg.jpg");
-    background-size : cover;
-    background-position : center;
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-image: url("static/images/bgimg.jpg");
+    background-size: cover;
+    background-position: center;
+}
 
+.Sign-up-form {
+    width: 25%;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
+    background: #fff;
+    padding: 20px;
+    margin: 2% auto;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(58px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
 }
-.Sign-up-form
-{
-    width : 300px;
-    box-shadow : 0 0 3px 0 rgba(0,0,0,0.3);
-    background : #fff;
-    padding : 20px;
-    margin : 8% auto 0;
-    text-align : center;
+
+.Sign-up-form h1 {
+    color: #1c8adb;
+    margin-bottom: 20px
 }
-.Sign-up-form h1
-{
-    color : #1c8adb;
-    margin-bottom : 20px
+
+button {
+    color: #fff;
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 15px;
+    margin: 10px 0;
+    border: none;
+    outline: none;
+    cursor: pointer;
 }
-button
-{
-    color : #fff;
-    width : 100%;
-    padding : 10px;
-    border-radius : 20px;
-    font-size : 15px;
-    margin : 10px 0;
-    border : none;
-    outline : none;
-    cursor : pointer;
+
+.signup-btn {
+    border: 1px solid #1c8adb;
+    background-color: #1c8adb;
+    transition: all ease-in-out;
+    width: 30%;
+    border-radius: 10px;
+    padding: 0.7rem;
 }
-.signup-btn
-{
-    background-color : #1c8adb;
+
+.signup-btn:hover {
+    background-color: white;
+    color: #1c8adb;
 }
-.input-box
-{
-    border-radius : 20px;
-    padding : 10px;
-    margin : 10px 0;
-    width : 90%;
-    border : 1px solid #999;
-    outline : none;
+
+.input-box {
+    border-radius: 10px;
+    padding: 0.7rem;
+    margin: 7px 0;
+    width: 90%;
+    border: 1px solid #999;
+    outline: none;
+    margin-bottom: 0.7rem;
+    font-size: 0.7rem;
 }
-.img
-{
-    width :20px;
+
+.img {
+    width: 20px;
 }
-hr
-{
-    margin-top : 20px;
-    width : 80%;
+
+hr {
+    margin-top: 20px;
+    width: 80%;
 }
-.or
-{
-    background : #fff;
-    width : 30px;
-    margin : -19px auto 10px;
+
+h4 {
+    color: #ff0000
 }
-h4
-{
-    color : #ff0000
+
+.link{
+    border: 1px solid #1c8adb;
+    padding: 0.5rem 0.7rem;
+    color: rgba(255, 255, 255, 0.806);
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: #1c8adb;
+    margin-left: 0.5rem;
+}
+
+.link:hover{
+    color: #1c8adb;
+    background-color: #fff;
 }

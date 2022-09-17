@@ -157,5 +157,13 @@ def history():
 @app.route('/edit')
 def edit():
     return render_template('edit.html')
+
+@app.route('/nav')
+def nav():
+    return render_template('navbar.html')
+
+@app.route('/')
+def about():
+    return render_template('home.html')
 if __name__ == "__main__":
     app.run(debug = True)

@@ -1,54 +1,65 @@
-<html>
+{%include 'navbar.html'%}
 
-<head>
   <title> Sign Up Page </title>
   <link rel="stylesheet" href="{{url_for('static',filename='css/signup_style.css')}}">
-</head>
 <style>
-body{
-  font-family : sans-serif;
-  background-image : url("static/images/bgimg.jpg");
-  background-size : cover;
-  background-position : center;
-}
+  body {
+    font-family: sans-serif;
+    background-image: url("static/images/signup_bg.jpg");
+    background-size: cover;
+    background-position: center;
+    /* background-image: linear-gradient(rgb(46, 46, 118), rgb(79, 79, 177), rgb(147, 147, 234)); */
+  }
+
+  .logo {
+    width: 25%;
+    border-radius: 50%;
+  }
+  nav{
+    z-index: 2;
+  }
 </style>
+
 <body>
   <h4>
-  {% with messages = get_flashed_messages(with_categories=true) %}
+    <!-- {% with messages = get_flashed_messages(with_categories=true) %}
 
-  {% if messages %}
+    {% if messages %}
 
-      {% for category, message in messages %}
+    {% for category, message in messages %}
 
-          <div class="alert alert-{{ category }}">
+    <div class="alert alert-{{ category }}">
 
-              {{ message }}
+      {{ message }}
 
-          </div>
+    </div>
 
-      {% endfor %}
+    {% endfor %}
 
-  {% endif %}
+    {% endif %}
 
-  {% endwith %}
-  </h4>
+    {% endwith %}
+  </h4> -->
   <div class="Sign-up-form">
-    <img src="{{url_for('static',filename='images/expense.jpg')}}" alt="MSM_logo" width="120" height="120">
-    <h1> Sign Up Now </h1>
+    <img class="logo" src="{{url_for('static',filename='images/expense.jpg')}}" alt="MSM_logo" width="70" height="70">
+    <h1 style="font-size: 1.5rem; color: whitesmoke;"> Sign Up Now </h1>
     <form name="signup form" action="/signup" method="post">
-      <input type="Full_name" name ="Full_name"class="input-box" placeholder="Your Full name" required>
-      <input type="Email"  name="Email" class="input-box" placeholder="Your Email" required>
-      <hr>
-      <input type="User_name" name="User_name" class="input-box" placeholder="Username" required>
-      <input type="Password" name="Password" class="input-box" placeholder="Password" required>
+      <input type="Full_name" id="fullname" name="Full_name" class="input-box" placeholder="Your Full name" required>
+      <input type="Email" id="email" name="Email" class="input-box" placeholder="Your Email" required>
+      <input type="User_name" id="username" name="User_name" class="input-box" placeholder="Username" required>
+      <input type="Password" id="password" name="Password" class="input-box" placeholder="Password" required>
       <button type="submit" class="signup-btn">Sign up</button>
-      <br>
-      <br>
-      <hr>
-      <p class="or">OR</p>
-      <p>Do you have an account ? <a href="/login">Sign in</a></p>
+      <p style="color:white;">OR</p>
+      <p style="color:white;">Do you have an account ? <a class="link" href="/login">Sign in</a></p>
     </form>
   </div>
+  <script>
+    // var email = document.getElementById('email').value
+    // var domain = email.slice(-12).toLowerCase();
+    // if(domain != "corestack.io"){
+    //   alert("Email not valid")
+    // }
+  </script>
 </body>
 
 </html>

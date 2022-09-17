@@ -1,3 +1,4 @@
+{%include 'navbar.html'%}
 {% block content %}
 
 <head>
@@ -30,7 +31,7 @@
 
   body {
     background-color: beige;
-    background-image: linear-gradient(to right, rgb(89, 89, 189), rgb(125, 12, 12));
+    background-image: linear-gradient(to right, rgb(164, 188, 203), rgb(64, 133, 158), rgb(157, 215, 218));
   }
 
   table {
@@ -58,6 +59,59 @@
     align-content: center;
 
   }
+
+  /* .jumbotron{
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 10px;
+  } */
+
+  nav {
+    background-color: rgb(255, 255, 255);
+    box-shadow: 1px 1px 10px rgb(77, 73, 73);
+    display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+  }
+
+  .left {
+    align-items: center;
+    display: flex;
+    flex: 4;
+  }
+
+  .center{
+    flex:2;
+  }
+
+  .right {
+    align-items: center;
+    display: flex;
+    flex: 1;
+  }
+
+  img {
+    width: 9%;
+  }
+
+  p {
+    margin-left: 1.5rem;
+    margin-top: 1rem;
+    cursor: pointer;
+  }
+
+  .btn {
+    padding: 0.2rem;
+  }
+
+  a {
+    text-decoration: none;
+    color: #1c8adb;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
 </style>
 
 <div class="container">
@@ -65,7 +119,8 @@
     <div class="col md-12">
       <div class="jumbotron p-3">
         <h2>MANAGE YOUR <b>TRANSACTIONS</b><button type="button" class="btn btn-success float-left"
-            data-bs-toggle="modal" data-bs-target="#myModal">Add New Transaction</button></h2>
+            data-bs-toggle="modal" data-bs-target="#myModal">Add New Transaction</button><button name="history_logout" type="button"
+            class="btn btn-danger float-right">Logout</button></h2>
         <div class="modal" id="myModal">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -76,12 +131,12 @@
               <div class="modal-body">
                 <form>
                   <div class="mb-3">
-                    <label>Name</label>
-                    <input type="text" class="form-control" required="1">
+                    <label class="form-label required">Name</label>
+                    <input type="text" name="add_transaction_name" class="form-control" required="1">
                   </div>
                   <div class="mb-3">
-                    <label>Amount</label>
-                    <input type="number" class="form-control" required="1">
+                    <label class="form-label required">Amount</label>
+                    <input type="number" name="add_transaction_amount" class="form-control" required="1">
                   </div>
                 </form>
               </div>
@@ -92,34 +147,66 @@
             </div>
           </div>
         </div>
-      <table class="table table-hover table-dark">
-        <tr>
-          <th>ID</th>
-          <th> Name </th>
-          <th> Amount </th>
-          <th></th>
-          <th></th>
-        </tr>
-        <br>
-        {% for re in new_task_history %}
-        <tr>
-          <td>{{re['_id']}}</td>
-          <td>{{re['name']}}</td>
-          <td>{{re['amount']}}</td>
+        <table class="table table-hover table-dark">
+          <tr>
+            <th>ID</th>
+            <th> Name </th>
+            <th> Amount </th>
+            <th></th>
+            <th></th>
+          </tr>
+          <br>
+          {% for re in new_task_history %}
+          <tr>
+            <td>{{re['_id']}}</td>
+            <td>{{re['name']}}</td>
+            <td>{{re['amount']}}</td>
 
-          <td>
-            <a href="" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit">Edit</a>
-          </td>
-          <td>
-            <a href="" class="btn btn-danger btn-xs"
-              onclick="return confirm('Are you sure you want to delete ?')">Delete</a>
-          </td>
-        </tr>
-        {% endfor %}
-      </table>
+            <td>
+              <a href="" class="btn btn-warning btn-xs" data-bs-toggle="modal" data-bs-target="#modaledit">Edit</a>
+            </td>
+            <td>
+              <a href="" class="btn btn-danger btn-xs"
+                onclick="return confirm('Are you sure you want to delete ?')">Delete</a>
+            </td>
+          </tr>
+
+
+          <div id="modaledit" class="modal fade">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Edit Details</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="mb-3">
+                      <label class="form-label required">Name</label>
+                      <input type="text" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label required">Amount</label>
+                      <input type="number" class="form-control" required>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary">Update</button>
+                  <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+          {% endfor %}
+        </table>
+      </div>
     </div>
   </div>
-</div>
 </div>
 {%endblock%}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"

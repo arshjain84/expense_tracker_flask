@@ -21,14 +21,22 @@ body {
   font-family: 'Lato', sans-serif;
 }
 
-.containerh{
-  margin: 20px auto;
+.containerh {
   width: 25%;
-  border:1px solid black;
-  padding: 2%;
+  border: 1px solid black;
+  padding-top: 2%;
+  padding-left: 2%;
+  padding-right: 2%;
   background: #f5f7f6;
- 
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  margin: 2% auto;
 }
+
 h1 {
   letter-spacing: 1px;
   margin: 0;
@@ -40,6 +48,7 @@ h3 {
   margin: 40px 0 10px;
   width: 100%;
 }
+
 .histroy {
   position: absolute;
   margin-top: -12%;
@@ -56,18 +65,18 @@ h4 {
 .inc-exp-container {
   background-color: #fff;
   box-shadow: var(--box-shadow);
-  padding: 20px;
+  padding: 10px;
   display: flex;
   justify-content: space-between;
   margin: 20px 0;
 }
 
-.inc-exp-container > div {
+.inc-exp-container>div {
   flex: 1;
   text-align: center;
 }
 
-.inc-exp-container > div:first-of-type {
+.inc-exp-container>div:first-of-type {
   border-right: 1px solid #dedede;
 }
 
@@ -102,7 +111,7 @@ input[type='number'] {
 
 .btn {
   cursor: pointer;
-  background-color: #9c88ff;
+  background-color: #28b6f6;
   box-shadow: var(--box-shadow);
   color: #fff;
   border: 0;
@@ -164,4 +173,69 @@ input[type='number'] {
 
 .list li:hover .delete-btn {
   opacity: 1;
+}
+
+body {
+  background-color: beige;
+  background-image: url("static/images/homebg.jpg");
+}
+
+table {
+
+  font-family: arial, sans-serif;
+
+  border-collapse: collapse;
+
+  width: 100%;
+
+}
+
+td,
+th {
+
+  border: 3px solid #dddddd;
+
+  text-align: left;
+
+  padding: 8px;
+
+  font-size: large;
+
+}
+
+
+
+tr:nth-child(even) {
+
+  background-color: greenyellow;
+
+}
+
+
+
+tr:nth-child(odd) {
+
+  background-color: white;
+}
+
+.logout {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+}
+
+.logout-btn {
+  font-size: 1rem;
+  background-color: #fff;
+  padding: 0.5rem 0.8rem;
+  border-radius: 10px;
+  color: #28b6f6;
+}
+
+.logout-btn:hover {
+  background-color: #28b6f6;
+  color: #fff;
+}
+.heading{
+  text-align: center;
 }

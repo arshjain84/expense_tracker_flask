@@ -1,38 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
+{%include 'navbar.html'%}
+{% block content %}
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}" />
   <title>Expense Tracker</title>
 </head>
 <style>
   
-body{
+body {
   background-color: beige;
-  background-image: linear-gradient(to right, rgb(89, 89, 189),rgb(125, 12, 12));
+  background-image: url("static/images/homebg.jpg");
 }
 
- table {
+table {
 
-font-family: arial, sans-serif;
+  font-family: arial, sans-serif;
 
-border-collapse: collapse;
+  border-collapse: collapse;
 
-width: 100%;
+  width: 100%;
 
 }
-td, th {
 
-border: 3px solid #dddddd;
+td,
+th {
 
-text-align: left;
+  border: 3px solid #dddddd;
 
-padding: 8px;
+  text-align: left;
 
-font-size: large;
+  padding: 8px;
+
+  font-size: large;
 
 }
 
@@ -40,7 +39,7 @@ font-size: large;
 
 tr:nth-child(even) {
 
-background-color: greenyellow;
+  background-color: greenyellow;
 
 }
 
@@ -48,61 +47,83 @@ background-color: greenyellow;
 
 tr:nth-child(odd) {
 
-background-color: white;
+  background-color: white;
+}
 
+.logout {
+  position: fixed;
+  top: 5rem;
+  right: 2rem;
+}
+
+.logout-btn {
+  font-size: 1rem;
+  background-color: #fff;
+  padding: 0.5rem 0.8rem;
+  border-radius: 10px;
+  color: #28b6f6;
+}
+
+.logout-btn:hover {
+  background-color: #28b6f6;
+  color: #fff;
+}
+.heading{
+  text-align: center;
+}
+nav{
+  width: 100%;
+  z-index: 2;
 }
 </style>
-</style>
-<body>
-  {% block content %}
-  <h2 style="color:white"> Income & Expense Tracker</h2>
-  <div class="containerh">
-    <h4>Your Balance</h4>
-    <h1 name="balance" id="balance">
-      &#8377 {{new_task_bal[-1]['total']}}
-    </h1>
+<h2 class="heading" style="color:#28b6f6"> Income & Expense Tracker <span class="logout"><button
+      class="logout-btn">Logout</button></span> </h2>
+<div class="containerh">
+  <h4>Your Balance</h4>
+  <h1 name="balance" id="balance">
+    &#8377 {{new_task_bal[-1]['total']}}
+  </h1>
 
-    <div class="inc-exp-container">
-      <div>
-        <h4>Income</h4>
-        <p id="money-plus" name="money-plus" class="money plus">
-          &#8377 {{new_task_inc[-1]['income']}}
-        </p>
-      </div>
-      <div>
-        <h4>Expense</h4>
-        <p id="money-minus" name="money-minus" class="money minus">
-          &#8377 {{new_task_exp[-1]['expense']}}
-        </p>
-      </div>
+  <div class="inc-exp-container">
+    <div>
+      <h4>Income</h4>
+      <p id="money-plus" name="money-plus" class="money plus">
+        &#8377 {{new_task_inc[-1]['income']}}
+      </p>
     </div>
-    <h3>Add new transaction</h3>
-    <form id="form" name="form" method="post" onsubmit="clearFields()">
-      <div class="form-control">
-        <label for="text">Text(max 20 letter)</label>
-        <input type="text" name="transactions" id="text" placeholder="Enter text..." />
-      </div>
-      <div class="form-control">
-        <label for="amount">Amount <br />
-          (negative - expense, positive - income)</label>
-        <input type="number" name="enter_amount" id="amount" placeholder="Enter amount..." />
-      </div>
-      <button type="submit" class="btn">Add transaction</button>
-      <button onclick="location.href='http://127.0.0.1:5000/history'" type="button" class ="btn">View Transactions</button>
-      <!-- <div id="transMsg"></div> -->
-    </form>
-    <!-- {% with messages = get_flashed_messages() %}
+    <div>
+      <h4>Expense</h4>
+      <p id="money-minus" name="money-minus" class="money minus">
+        &#8377 {{new_task_exp[-1]['expense']}}
+      </p>
+    </div>
+  </div>
+  <h3>Add new transaction</h3>
+  <form id="form" name="form" method="post" onsubmit="clearFields()">
+    <div class="form-control">
+      <label for="text">Text(max 20 letter)</label>
+      <input type="text" name="transactions" id="text" placeholder="Enter text..." />
+    </div>
+    <div class="form-control">
+      <label for="amount">Amount <br />
+        (negative - expense, positive - income)</label>
+      <input type="number" name="enter_amount" id="amount" placeholder="Enter amount..." />
+    </div>
+    <button type="submit" class="btn">Add transaction</button>
+    <button onclick="location.href='http://127.0.0.1:5000/history'" type="button" class="btn">View
+      Transactions</button>
+    <!-- <div id="transMsg"></div> -->
+  </form>
+  <!-- {% with messages = get_flashed_messages() %}
     {% if messages %}
     {% for message in messages %}
     {{ message }}
     {% endfor %}
     {% endif %}
-    {% endwith %}
-    {% endblock %} -->
-  </div>
+    {% endwith %} -->
 
-  <script src="{{url_for('static',filename='js/signup_script.js')}}">
-  </script>
-</body>
+</div>
 
-</html>
+{% endblock %}
+
+<script src="{{url_for('static',filename='js/signup_script.js')}}"></script>
