@@ -58,7 +58,7 @@ def login():
     return render_template("login.html")
 income=0 
 expense=0
-@app.route('/home',methods=['GET','POST'])
+@app.route('/budget',methods=['GET','POST'])
 def home():
     # return render_template('index.html')
     new_taskk_inc = []

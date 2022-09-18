@@ -2,10 +2,9 @@
 {% block content %}
 <title>Home Page</title>
 <style>
-    nav{
+    nav {
         z-index: 2;
     }
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
     body {
         background-image: url("static/images/signup_bg.jpg");
@@ -20,6 +19,7 @@
         border-radius: 10px;
         border: 1px solid rgba(255, 255, 255, 0.18);
         margin: 2% auto;
+        padding-bottom: 4rem;
     }
 
     .maincontainer {
@@ -53,123 +53,64 @@
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
-    .main-footer {
-        padding: 70px 0;
-        display: flex;
-        justify-content: space-evenly;
-        background-color: #19302E;
-    }
-
-    .main-footer ul {
-        list-style: none;
-    }
-
-    .main-footer h1 {
-        font-size: 22px;
-        line-height: 117%;
-        color: #ffffff;
-        margin-bottom: 10px;
-        font-weight: 500;
-    }
-
-    .main-footer h2 {
-        color: #ffffff;
-        font-weight: 500;
-    }
-
-    .main-footer ul li a {
-        color: #ffffffcc;
-        text-decoration: none;
-    }
-
     footer {
-        background-color: #19302E;
-        border-top: 1px solid #6EB981;
-        font-size: 17px;
-        padding: 15px 5px;
-        color: #ffffff;
+        width: 90%;
+        height: 15rem;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(58px);
+        -webkit-backdrop-filter: blur(8px);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        margin-top: 5rem;
+        display: flex;
+        padding: 4rem 2rem;
+        padding-bottom: 6rem;
+        margin: 5% auto;
+    }
+
+    .foot-left,
+    .foot-center,
+    .foot-right {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+
+    h1 {
+        color: aliceblue;
+        font-size: 2rem;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+
+    p,
+    h2 {
+        color: aliceblue;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+
+    p:hover {
+        cursor: pointer;
+        color: rgb(180, 226, 232);
+    }
+
+    .foot-left {
         text-align: center;
+        justify-content: center;
+        align-items: center;
     }
 
-    footer a {
-        text-decoration: none;
-        color: #ffffff;
+    footer img {
+        width: 50%;
     }
 
-    .logoinfo p {
-        color: #6EB981;
-        font-size: 17px;
-        margin-top: 5px;
-    }
-
-    .contact-details {
-        margin-top: 20px;
-    }
-
-    .contact-details li {
-        list-style: none;
-        margin: 10px 0;
-    }
-
-    .contact-details li a {
-        text-decoration: none;
-        color: #f1f1f1;
-    }
-
-    .contact-details .fa {
-        color: #f1f1f1;
-        margin-right: 10px;
-    }
-
-    .sociallogos {
-        padding: 20px 0;
-    }
-
-    .sociallogos .logobox a {
-        padding: 0 10px;
-        text-decoration: none;
-        color: #ffffff;
-        font-size: 22px;
-    }
-
-    .com ul li {
-        padding: 5px 0;
-    }
-
-    @media only screen and (max-width: 749px) {
-        .main-footer {
-            padding: 20px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-        }
-
-        .info {
-            padding: 20px 0;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .main-footer {
-            grid-template-columns: 1fr;
-        }
-
-        .sociallogos {
-            padding: 20px 0;
-        }
-
-        .com {
-            padding: 20px 0;
-        }
-    }
-
-    #footer {
-        margin-top: 2rem;
+    .small {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        text-align: center;
+        font-size: 1rem;
     }
 </style>
 
 <body>
-
-
     <div class="main">
         <div class="maincontainer">
             <img src="static/images/corestack_logo.webp" alt="">
@@ -189,45 +130,30 @@
         </div>
     </div>
 
-    <section id="footer">
-        <div class="main-footer">
-            <div class="logoinfo" data-aos="fade-up">
-                <h2>Responsive Footer</h2>
-                <p>By Nikhil</p>
-
-                <div class="contact-details">
-                    <h1>Contact Us</h1>
-                    <li>
-                        <div class="fa fa-phone"></div><a href="tel:+919326048690">+91 0987654321</a>
-                    </li>
-                    <li>
-                        <div class="fa fa-envelope"></div><a href="mailto:yourmail@gmail.com">yourmail@gmail.com</a>
-                    </li>
-                    </li>
-                </div>
-            </div>
-            <div class="com " data-aos="fade-up">
-                <h1>About</h1>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Projects</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div>
-            <div class="info" data-aos="fade-up">
-                <h1>Social Media</h1>
-                <div class="sociallogos">
-                    <div class="logobox">
-                        <a href="#" class="fa fa-instagram"></a>
-                        <a href="#" class="fa fa-linkedin"></a>
-                        <a href="#" class="fa fa-facebook"></a>
-                        <a href="#" class="fa fa-youtube-play"></a>
-                    </div>
-                </div>
-            </div>
+    <footer>
+        <div class="foot-left">
+            <img src="static/images/corestack_logo.webp" alt="">
+            <h1>Budget Tracker</h1>
         </div>
-        <footer>© Your Copyright 2021 All Rights Reserved</footer>
-    </section>
+        <div class="foot-center">
+            <h2>Quick Links</h2>
+            <p>About</p>
+            <p>Customers</p>
+            <p>Our Services</p>
+        </div>
+        <div class="foot-right">
+            <h2>Contact Us</h2>
+            <p>9192939495</p>
+            <p>RMZ One Paramount,Chennai</p>
+        </div>
+    </footer>
+    <div class="small">
+        <small style="color:white ;">Made with <span style="color: red;">&#10084;</span> in Corestack</small>
+        <br>
+        <small style="color:white ;">Contributed by Arsh Jain</small>
+        <br>
+        <small style="color:white ;margin-bottom: 2rem;">UI by Aakash Pawan</small>
+    </div>
+
 </body>
 {% endblock %}
