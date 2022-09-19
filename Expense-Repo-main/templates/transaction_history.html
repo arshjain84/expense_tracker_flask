@@ -124,7 +124,7 @@
     <div class="col md-12">
       <div class="jumbotron p-3">
         <h2>MANAGE YOUR <b>TRANSACTIONS</b><button name="history_logout"
-            type="button" class="btn btn-danger float-right">Logout</button><button style="color:white" class="go_back btn btn-success float-left" type="button"><a href="/a"> Back</a> </button></h2>
+            type="button" class="btn btn-danger float-right">Logout</button><button style="color:white" class="go_back btn btn-success float-left" type="button"><a href="/budget"> Back</a> </button></h2>
         <table class="table table-hover table-dark">
           <tr>
             <th>ID</th>
@@ -143,49 +143,13 @@
 
             <td>
             
-              <a href="/history" class="btn btn-warning btn-xs" data-bs-toggle="modal"
-                data-bs-target="#modaledit">Edit</a>
+              <a href="{{url_for('history_edit',id=value)}}" class="btn btn-warning btn-xs">Edit</a>
             </td>
             <td>
-              <a href="" class="btn btn-danger btn-xs"
+              <a href="{{url_for('delete',id=value)}}" class="btn btn-danger btn-xs"
                 onclick="return confirm('Are you sure you want to delete ?')">Delete</a>
             </td>
           </tr>
-
-
-          <div id="modaledit" class="modal fade">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">Edit Details</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-
-
-
-                  <form method="post" action="/history_edit">
-                    <div class="mb-3">
-                      <label class="form-label required">Name</label>
-                      <input name="edit_name" type="text" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                      <label class="form-label required">Amount</label>
-                      <input name="edit_amount" type="number" class="form-control" required>
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-
-                  <button type="submit" class="btn btn-primary"> <a
-                      href="{{url_for('history_edit',id=value)}}">Update</a> </button>
-                  <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-
           {% endfor %}
         </table>
       </div>

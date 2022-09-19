@@ -136,34 +136,32 @@ def history1():
         new_taskk_history.append(i)       
     return render_template('transaction_history.html',new_task_history = new_taskk_history)
 
-# @app.route("/delete/<id>", methods=["GET"])
-# def delete(id):
-#     db.tasks.delete_one({"_id":id})
-#     tasks.delete_one({"_id":id})
-#     return redirect(url_for("/"))
+@app.route("/delete/<id>", methods=["GET"])
+def delete(id):
+    tasks.delete_one({"_id":ObjectId(id)})
+    return redirect(url_for('history1'))
 
 @app.route("/history_edit/<id>", methods=["GET","POST"])
 def history_edit(id):
-    # print('arsh')
-    # print(id)
+    print('arsh')
+    print(id)
     if request.method=="POST":
-        N = request.form['edit_name']
-        A = request.form['edit_amount']
+        N = request.form.get('edit_name')
+        A = request.form.get('edit_amount')
         print(N)
         print(A)
         print("hello")
-
         tasks.update_one({"_id": ObjectId(id)},{"$set":{'name':N,'amount':A}})
         return redirect(url_for('history'))
     if request.method=='GET':
         history_update=[]
-        history_data=tasks.find({'_id':ObjectId(id)},{"name":1,"amount":1})
+        history_data=tasks.find({'_id':ObjectId(id)})
         # print(history_data)
         for i in history_data:
             history_update.append(i)
             print(history_update)
 
-    return render_template ("transaction_history.html",new_task_history=history_update)
+    return render_template ("edit.html",new_task_history=history_update)
 
 @app.route('/edit')
 def edit():
