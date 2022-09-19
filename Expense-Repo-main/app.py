@@ -23,6 +23,12 @@ bcrypt = Bcrypt(app)
 db = mongo.db.users
 tasks = mongo.db.tasks
 
+
+@app.route('/')
+def about():
+    return render_template('home.html')
+
+
 @app.route("/signup",methods = ["POST", "GET"])
 def signup():  
     if request.method == "POST":
@@ -61,11 +67,15 @@ def login():
             flash(f'User logged in successfully','success')
             return redirect(url_for('home'))
     return render_template('login.html')
+
+
 income=0 
 expense=0
 @app.route('/budget',methods=['GET','POST'])
 def home():
     # return render_template('index.html')
+
+
     new_taskk_inc = []
     new_taskk_exp = []
     new_taskk_bal = []
@@ -136,10 +146,14 @@ def history1():
         new_taskk_history.append(i)       
     return render_template('transaction_history.html',new_task_history = new_taskk_history)
 
+
+
 @app.route("/delete/<id>", methods=["GET"])
 def delete(id):
     tasks.delete_one({"_id":ObjectId(id)})
     return redirect(url_for('history1'))
+
+
 
 @app.route("/history_edit/<id>", methods=["GET","POST"])
 def history_edit(id):
@@ -163,26 +177,13 @@ def history_edit(id):
 
     return render_template ("edit.html",new_task_history=history_update)
 
-@app.route('/edit')
-def edit():
-    return render_template('edit.html')
 
-@app.route('/nav')
-def nav():
-    return render_template('navbar.html')
-
-@app.route('/')
-def about():
-    return render_template('home.html')
-
-# @app.route('/logout')
-# def logout():
-#     logout_user()
-#     return redirect('/')
 
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
+
+
 
 if __name__ == "__main__":
     app.run(debug = True)
