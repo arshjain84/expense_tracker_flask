@@ -1,0 +1,59 @@
+{%include 'navbar.html'%}
+{% block content %}
+<title></title>
+<style>
+    .container {
+        margin-left: 40%;
+        display: flex;
+        align-items: center;
+        align-content: center;
+    }
+
+    .error {
+        width: 800px;
+    }
+
+    .corestack {
+        margin-left: 1.2rem;
+    }
+
+    .logo {
+        margin-left: 40%;
+        display: flex;
+        align-items: center;
+        align-content: center;
+    }
+
+    p {
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+
+    .img-cont {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    button {
+        padding: 10px 20px;
+        background-color: rgb(86, 174, 207);
+        border: 1px solid grey;
+        border-radius: 10px;
+    }
+
+    button a {
+        color: aliceblue;
+    }
+</style>
+<p class="logo">
+    <img class="corestack" src="{{url_for('static',filename='images/corestack_logo.webp')}}" alt="corestack_logo"
+        width="70" height="auto">Budget Tracker
+</p>
+<div class="img-cont">
+    <img class="error" src="{{url_for('static',filename='images/404.png')}}" alt="corestack_logo" width="800px"
+        height="350">
+    <p> It seems like you are looking for a page that is no longer existing or never existed</p>
+    <button type="submit"><a style="color: white;" href="/">Go to Homepage</a> </button>
+</div>
+
+{%endblock%}

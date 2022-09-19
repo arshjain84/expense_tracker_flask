@@ -6,95 +6,103 @@
   <title>Expense Tracker</title>
 </head>
 <style>
-  
-body {
-  background-color: beige;
-  background-image: url("static/images/homebg.jpg");
-}
+  body {
+    background-color: beige;
+    background-image: url("static/images/homebg.jpg");
+  }
 
-table {
+  table {
 
-  font-family: arial, sans-serif;
+    font-family: arial, sans-serif;
 
-  border-collapse: collapse;
+    border-collapse: collapse;
 
-  width: 100%;
+    width: 100%;
 
-}
+  }
 
-td,
-th {
+  td,
+  th {
 
-  border: 3px solid #dddddd;
+    border: 3px solid #dddddd;
 
-  text-align: left;
+    text-align: left;
 
-  padding: 8px;
+    padding: 8px;
 
-  font-size: large;
+    font-size: large;
 
-}
-
-
-
-tr:nth-child(even) {
-
-  background-color: greenyellow;
-
-}
+  }
 
 
 
-tr:nth-child(odd) {
+  tr:nth-child(even) {
 
-  background-color: white;
-}
+    background-color: greenyellow;
 
-.logout {
-  position: fixed;
-  top: 5rem;
-  right: 2rem;
-}
+  }
 
-.logout-btn {
-  font-size: 1rem;
-  background-color: #fff;
-  padding: 0.5rem 0.8rem;
-  border-radius: 10px;
-  color: #28b6f6;
-}
 
-.logout-btn:hover {
-  background-color: #28b6f6;
-  color: #fff;
-}
-.heading{
-  text-align: center;
-}
-nav{
-  width: 100%;
-  z-index: 2;
-}
+
+  tr:nth-child(odd) {
+
+    background-color: white;
+  }
+
+  .logout {
+    position: fixed;
+    top: 5rem;
+    right: 2rem;
+  }
+
+  .logout-btn {
+    font-size: 1rem;
+    background-color: #fff;
+    padding: 0.5rem 0.8rem;
+    border-radius: 10px;
+    color: #28b6f6;
+  }
+
+  .logout-btn:hover {
+    background-color: #28b6f6;
+    color: #fff;
+  }
+
+  .heading {
+    text-align: center;
+  }
+
+  nav {
+    width: 100%;
+    z-index: 2;
+  }
 </style>
 <h2 class="heading" style="color:#28b6f6"> Income & Expense Tracker <span class="logout"><button
-      class="logout-btn">Logout</button></span> </h2>
+      class="logout-btn"><a href="/">Logout</a></button></span> </h2>
 <div class="containerh">
   <h4>Your Balance</h4>
   <h1 name="balance" id="balance">
+    {%if new_task_bal|length!=0 %}
     &#8377 {{new_task_bal[-1]['total']}}
+    {%endif%}
+
   </h1>
 
   <div class="inc-exp-container">
     <div>
       <h4>Income</h4>
       <p id="money-plus" name="money-plus" class="money plus">
+        {%if new_task_inc|length!=0 %}
         &#8377 {{new_task_inc[-1]['income']}}
+        {%endif%}
       </p>
     </div>
     <div>
       <h4>Expense</h4>
       <p id="money-minus" name="money-minus" class="money minus">
+        {%if new_task_exp|length!=0 %}
         &#8377 {{new_task_exp[-1]['expense']}}
+        {%endif%}
       </p>
     </div>
   </div>
@@ -110,8 +118,8 @@ nav{
       <input type="number" name="enter_amount" id="amount" placeholder="Enter amount..." />
     </div>
     <button type="submit" class="btn">Add transaction</button>
-    <button onclick="location.href='http://127.0.0.1:5000/history'" type="button" class="btn">View
-      Transactions</button>
+    <button type="button" class="btn"> <a href="{{url_for('history1')}}">View
+        Transactions</a></button>
     <!-- <div id="transMsg"></div> -->
   </form>
   <!-- {% with messages = get_flashed_messages() %}

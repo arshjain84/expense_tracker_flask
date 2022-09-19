@@ -2,14 +2,20 @@ from ast import Pass
 from asyncio.windows_events import NULL
 from binascii import Incomplete
 from glob import glob
+import imp
 import re
 from unicodedata import name
 from unittest import removeResult, result
 from flask import Flask,render_template,request,Response,json, flash, redirect, url_for,session
 from flask_pymongo import PyMongo
 from flask_bcrypt import Bcrypt
+from bson.objectid import ObjectId
 import uuid
 app = Flask(__name__)
+app.secret_key = "arsh-239095jdms-dcj1248o"
+# login_manager = LoginManager(app)
+# login_manager.login_view = 'auth.login'
+# login_manager.init_app(app) 
 app.config['MONGO_URI'] = "mongodb://localhost:27017/expense_tracker_db"
 mongo = PyMongo(app)
 bcrypt = Bcrypt(app)
@@ -17,7 +23,6 @@ bcrypt = Bcrypt(app)
 db = mongo.db.users
 tasks = mongo.db.tasks
 
-app.secret_key = "arsh-239095jdms-dcj1248o"
 @app.route("/signup",methods = ["POST", "GET"])
 def signup():  
     if request.method == "POST":
@@ -47,15 +52,15 @@ def signup():
 @app.route('/login', methods=['GET','POST'])
 def login():
     if request.method=='POST':
+        name = request.form['User_name']
         email = request.form['email']
-        password = request.form['password']
-        userpassword = db.find_one({'email':email},{'_id':0,'password':1})
+        password = request.form['Password']
+        userpassword = db.find_one({'email':email},{'name':1,'_id':0})
         print(bcrypt.check_password_hash(userpassword['password'],password))
         if bcrypt.check_password_hash(userpassword['password'],password):
             flash(f'User logged in successfully','success')
             return redirect(url_for('home'))
-
-    return render_template("login.html")
+    return render_template('login.html')
 income=0 
 expense=0
 @app.route('/budget',methods=['GET','POST'])
@@ -121,7 +126,7 @@ def email():
     return render_template('email.html')
 
 @app.route('/history',methods = ['GET','POST'])
-def history():
+def history1():
     new_taskk_history = []
 
         # flash("transaction added successfully")
@@ -131,28 +136,34 @@ def history():
         new_taskk_history.append(i)       
     return render_template('transaction_history.html',new_task_history = new_taskk_history)
 
-# @app.route("/edit/<id>", methods=["GET","POST"])
-# def update(id):
-#     if request.method=='GET':
-#         history_update=[]
-#         history_data=tasks.find({'_id':id})
-#         for i in history_data:
-#             history_update.append(i)
-#             print(history_update)
-            
-#     if request.method=="POST":
-#         N = request.form.get("name")
-#         i = request.form.get("employee_id")
-#         p = request.form.get("phone")
-#         jd = request.form.get("job")
-#         d = request.form.get("dateemployed")
-#         ad = request.form.get("resaddress")
-#         jl = request.form.get("reslocation")
+# @app.route("/delete/<id>", methods=["GET"])
+# def delete(id):
+#     db.tasks.delete_one({"_id":id})
+#     tasks.delete_one({"_id":id})
+#     return redirect(url_for("/"))
 
+@app.route("/history_edit/<id>", methods=["GET","POST"])
+def history_edit(id):
+    # print('arsh')
+    # print(id)
+    if request.method=="POST":
+        N = request.form['edit_name']
+        A = request.form['edit_amount']
+        print(N)
+        print(A)
+        print("hello")
 
-#         tasks.update_one({"Employee_id": i},{"$set":{'Employee_name':N,'Employee_id':i,'Phone_Number':p,'Designation':jd,'Date_of_Joining':d,'Address':ad,'Location':jl}})
-#         return redirect(url_for('employeelist'))
-#     return render_template ("edit.html",newuser=history_update)
+        tasks.update_one({"_id": ObjectId(id)},{"$set":{'name':N,'amount':A}})
+        return redirect(url_for('history'))
+    if request.method=='GET':
+        history_update=[]
+        history_data=tasks.find({'_id':ObjectId(id)},{"name":1,"amount":1})
+        # print(history_data)
+        for i in history_data:
+            history_update.append(i)
+            print(history_update)
+
+    return render_template ("transaction_history.html",new_task_history=history_update)
 
 @app.route('/edit')
 def edit():
@@ -165,5 +176,15 @@ def nav():
 @app.route('/')
 def about():
     return render_template('home.html')
+
+# @app.route('/logout')
+# def logout():
+#     logout_user()
+#     return redirect('/')
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
 if __name__ == "__main__":
     app.run(debug = True)

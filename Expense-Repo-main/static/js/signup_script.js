@@ -40,9 +40,9 @@ function closeModal(modal){
 
 
 const checkUserName = () => {
-    const username = document.getElementById("usertext").value;
-    if (username == "" ) {
-      document.getElementById("name_error").innerHTML += "<p> username should not be blank </p>";
+    const Full_name = document.getElementById("fullname").value;
+    if (Full_name == "" ) {
+      document.getElementById("name_error").innerHTML += "<p> name should not be blank </p>";
       setTimeout(() => {
         document.getElementById("name_error").innerHTML = "";
       }, 2000);
