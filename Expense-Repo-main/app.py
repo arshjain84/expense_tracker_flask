@@ -11,6 +11,7 @@ from flask_pymongo import PyMongo
 from flask_bcrypt import Bcrypt
 from bson.objectid import ObjectId
 import uuid
+# from flask_session import Session
 app = Flask(__name__)
 app.secret_key = "arsh-239095jdms-dcj1248o"
 # login_manager = LoginManager(app)
@@ -23,6 +24,9 @@ bcrypt = Bcrypt(app)
 db = mongo.db.users
 tasks = mongo.db.tasks
 
+# app.config["SESSION_PERMANENT"] = False
+# app.config["SESSION_TYPE"] = "filesystem"
+# Session(app)
 
 @app.route('/')
 def about():
@@ -71,7 +75,7 @@ def login():
 
 income=0 
 expense=0
-@app.route('/budget',methods=['GET','POST'])
+@app.route('/calculate',methods=['GET','POST'])
 def home():
     # return render_template('index.html')
 
@@ -166,7 +170,7 @@ def history_edit(id):
         print(A)
         print("hello")
         tasks.update_one({"_id": ObjectId(id)},{"$set":{'name':N,'amount':A}})
-        return redirect(url_for('history'))
+        return redirect(url_for('history1'))
     if request.method=='GET':
         history_update=[]
         history_data=tasks.find({'_id':ObjectId(id)})
@@ -178,6 +182,10 @@ def history_edit(id):
     return render_template ("edit.html",new_task_history=history_update)
 
 
+@app.route("/logout")
+def logout():
+    session["name"] = None
+    return redirect("/")
 
 @app.errorhandler(404)
 def page_not_found(e):

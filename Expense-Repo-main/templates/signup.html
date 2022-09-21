@@ -44,20 +44,34 @@
     <div class="Sign-up-form">
       <img class="logo" src="{{url_for('static',filename='images/expense.jpg')}}" alt="MSM_logo" width="70" height="70">
       <h1 style="font-size: 1.5rem; color: whitesmoke;"> Sign Up Now </h1>
-      <form name="signup form" action="/login" method="post">
+      <form name="signup form" action="/signup" method="post">
         <input type="Full_name" id="fullname" name="Full_name" class="input-box" placeholder="Your Full name">
         <div id="name_error" class="nameerror"></div>
-        <input type="Email" id="email" name="Email" class="input-box" placeholder="Your Email" required>
+
+        <input type="Email" id="email" name="Email" class="input-box" placeholder="Your Email">
         <div id="email_error" class="emailerror"></div>
-        <input type="User_name" id="username" name="User_name" class="input-box" placeholder="Username" required>
-        <input type="Password" id="password" name="Password" class="input-box" placeholder="Password" required>
-        <div id="name_error" class="nameerror"></div>
-        <button type="submit" class="signup-btn">Sign up</button>
+
+        <input type="User_name" id="username" name="User_name" class="input-box" placeholder="Username">
+        <div id="username_error" class="usernameerror"></div>
+        
+        <input type="Password" id="password" name="Password" class="input-box" placeholder="Password" >
+        <div id="password_Error" class="passworderror"></div>
+
+        <button id = "submit" type="submit" class="signup-btn">Sign up</button>
         <p style="color:white;">OR</p>
         <p style="color:white;">Do you have an account ? <a class="link" href="/login">Sign in</a></p>
       </form>
     </div>
     <script src="{{url_for('static',filename='js/signup_script.js')}}"></script>
+    <script>
+      // var email = document.getElementById("email").value;
+
+      // var patt1 = /^([a-z0-9\.-]+)@gmail.com$/i
+      // if (!patt1.test(email)) {
+        // document.getElementById("email_error").innerHTML = "**invalid email id "
+        // alert("Invalid  domain name provided. Use only gmail domain for sign up");
+      // }
+    </script>
 </body>
 
 </html>

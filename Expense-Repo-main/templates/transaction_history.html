@@ -118,15 +118,26 @@
     text-decoration: none;
 
   }
+
+  .logout a{
+    text-decoration: none;
+    color: white;
+  }
+  button{
+    text-decoration: none;
+  }
 </style>
+
 
 <div class="container">
   <div class="row">
     <div class="col md-12">
       <div class="jumbotron p-3">
-        <h2>MANAGE YOUR <b>TRANSACTIONS</b><button name="history_logout" type="button"
-            class="btn btn-danger float-right">Logout</button><button style="color:white"
-            class="go_back btn btn-success float-left" type="button"><a href="/budget"> Back</a> </button></h2>
+        <h2>
+          MANAGE YOUR <b>TRANSACTIONS</b>
+          <button name="history_logout" type="button"
+            class="logout btn btn-danger float-right"><a href="/">Logout</a></button>
+            <button style="color:white" class="go_back btn btn-success float-left" type="button"><a href="/calculate"> Back</a> </button></h2>
         <table class="table table-hover table-dark">
           <tr>
             <th>ID</th>

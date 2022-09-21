@@ -26,10 +26,11 @@
     <img class="image" src="{{url_for('static',filename='images/expense.jpg')}}" alt="MSM_logo" width="120"
       height="120">
     <h1 style="color:white ;"> Login Now </h1>
-    <form name="login form" action="/budget" method="post">
+    <form name="login form" action="/calculat" method="post">
 
       <input type="User_name" name="User_name" class="input-box" placeholder="Username" required>
       <input type="Email" id="email" name="email" class="input-box" placeholder="Your Email" required>
+      <div id="email_error" class="emailerror"></div>
       <input type="Password" name="Password" class="input-box" placeholder="Password">
 
       <button type="submit" class="login-btn">Login</button>
@@ -38,5 +39,15 @@
       <p style="color:white ;">Do you have an account ? <a class="link" href="signup">Sign Up</a></p>
     </form>
   </div>
+  <script>
+    var email = document.getElementById("email").value;
+
+    var patt1 = /^([a-z0-9\.-]+)@gmail.com$/i
+    if (!patt1.test(email)) {
+      document.getElementById("email").innerHTML = "**invalid email id "
+      // alert("Invalid  domain name provided. Use only gmail domain for login in");
+
+    }
+  </script>
 </body>
 {% endblock %}

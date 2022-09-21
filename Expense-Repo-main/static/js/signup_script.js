@@ -39,8 +39,15 @@ function closeModal(modal){
 
 
 
+
+
+
+
+
+
+
 const checkUserName = () => {
-    const Full_name = document.getElementById("fullname").value;
+    const Full_name = document.getElementById("Fullname").value;
     if (Full_name == "" ) {
       document.getElementById("name_error").innerHTML += "<p> name should not be blank </p>";
       setTimeout(() => {
@@ -73,7 +80,7 @@ const checkUserName = () => {
   
   
   const checkEmail = () => {
-    const email = document.getElementById("emailtext").value;
+    const email = document.getElementById("email").value;
     if (!email.includes("@", 1) || /^[\!#$%&*_+|/>,<;{}[]()]*$/.test(email)) {
       document.getElementById("email_error").innerHTML += "<p>Wrong email id</p>";
       setTimeout(() => {
@@ -86,7 +93,7 @@ const checkUserName = () => {
   
   
   const checkPassword = () => {
-    const password = document.getElementById("passwordtext").value;
+    const password = document.getElementById("password").value;
     if (!/[0-9 a-z A-Z]+/.test(password)) {
       document.getElementById("password_error").innerHTML +=
         "<p>Wrong password</p>";
@@ -130,4 +137,31 @@ const checkUserName = () => {
   });
   
   
+
+
+
+
+  
+
+  // <div class="Sign-up-form">
+  //     <img class="logo" src="{{url_for('static',filename='images/expense.jpg')}}" alt="MSM_logo" width="70" height="70">
+  //     <h1 style="font-size: 1.5rem; color: whitesmoke;"> Sign Up Now </h1>
+  //     <form name="signup form" action="/signup" method="post">
+  //       <input type="Full_name" id="Fullname" name="Full_name" class="input-box" placeholder="Your Full name">
+  //       <div id="name_error" class="nameerror"></div>
+
+  //       <input type="Email" id="email" name="Email" class="input-box" placeholder="Your Email">
+  //       <div id="email_error" class="emailerror"></div>
+
+  //       <input type="User_name" id="username" name="User_name" class="input-box" placeholder="Username">
+  //       <div id="username_error" class="usernameerror"></div>
+        
+  //       <input type="Password" id="password" name="Password" class="input-box" placeholder="Password" >
+  //       <div id="password_Error" class="passworderror"></div>
+
+  //       <button id = "submit" type="submit" class="signup-btn">Sign up</button>
+  //       <p style="color:white;">OR</p>
+  //       <p style="color:white;">Do you have an account ? <a class="link" href="/login">Sign in</a></p>
+  //     </form>
+  //   </div>
   
